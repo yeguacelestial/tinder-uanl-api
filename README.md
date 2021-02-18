@@ -1,4 +1,4 @@
 # tinder-uanl-api
 Tinder UANL backend
 
-![Run tests](https://github.com/yeguacelestial/tinder-uanl-api/workflows/.github/workflows/tests.yml/badge.svg)
+![example workflow name](https://github.com/yeguacelestial/tinder-uanl-api/workflows/Run%20tests/badge.svg)
