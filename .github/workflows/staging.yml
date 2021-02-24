@@ -1,0 +1,44 @@
+name: Deploy to Staging app
+
+on:
+  push:
+    branches:
+      - staging
+
+env:
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  DEBUG: ${{ secrets.DEBUG }}
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+        git fetch --prune --unshallow
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Add conda to system path
+      run: |
+        # $CONDA is an environment variable pointing to the root of the miniconda directory
+        echo $CONDA/bin >> $GITHUB_PATH
+    - name: Install dependencies
+      run: |
+        conda env update --file environment.yml --name base
+    - name: Run migrations
+      run: python manage.py migrate
+    - name: Run tests on all apps
+      run: python manage.py test
+    - name: If everything is fine, deploy to Heroku
+      env:
+        STAGING_HEROKU_API_TOKEN: ${{ secrets.STAGING_HEROKU_API_TOKEN }}
+        STAGING_HEROKU_APP_NAME: ${{ secrets.STAGING_HEROKU_APP_NAME }}
+      if: job.status == 'success'
+      run: |
+        git remote add heroku https://heroku:$STAGING_HEROKU_API_TOKEN@git.heroku.com/$STAGING_HEROKU_APP_NAME.git
+        git push heroku HEAD:main -f
