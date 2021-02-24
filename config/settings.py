@@ -28,9 +28,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -42,6 +40,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Added Django apps
+    'django.contrib.sites',
+
+    # 3rd party
+    'dj_rest_auth',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.microsoft',
 ]
 
 MIDDLEWARE = [
@@ -124,5 +134,31 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Custom
+USER_SESSION_MICROSOFT_CALLBACK_URL = os.getenv('USER_SESSION_MICROSOFT_CALLBACK_URL')
+
+SITE_ID = 1
+
+# Set tenant for Microsoft Login
+SOCIALACCOUNT_PROVIDERS = {
+    'microsoft': {
+        'tenant': 'uanl.edu.mx',
+    }
+}
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+# DRF
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
+# Development settings
 if os.environ.get("DJANGO_DEVELOPMENT"):
     from config.settings_dev import *
+
+# Heroku settings
+if 'HEROKU' in os.environ:
+    import django_heroku
+    django_heroku.settings(locals())
