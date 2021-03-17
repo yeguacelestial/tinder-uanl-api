@@ -41,13 +41,19 @@ This API is consumed by an external React Native app.
       liked_by: [
         {
           email_address: string
-        }
+        },
+      ],
+
+      has_liked: [
+        {
+          email_address: string
+        },
       ],
 
       suggested_candidates: [
         {
           email_address: string
-        }
+        },
       ],
 
     }
