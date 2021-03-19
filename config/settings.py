@@ -28,7 +28,9 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'tinder-uanl-staging.herokuapp.com',
+]
 
 
 # Application definition
@@ -43,6 +45,9 @@ INSTALLED_APPS = [
 
     # Added Django apps
     'django.contrib.sites',
+
+    # Local
+    'user_session',
 
     # 3rd party
     'dj_rest_auth',
@@ -114,6 +119,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'user_session.User'
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -147,6 +164,8 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+# LOGIN_REDIRECT_URL = '/user-session/dj-rest-auth/microsoft/'
 
 # DRF
 REST_FRAMEWORK = {
