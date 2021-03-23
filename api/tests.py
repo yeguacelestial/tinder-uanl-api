@@ -17,16 +17,31 @@ class UserSessionTest(APITestCase):
 
     def setUp(self):
         """
-            Create normal user instance.
+        Create normal user instance.
         """
         self.normal_user = User.objects.create(
             email="pablo.barreragzz@uanl.edu.mx",
             first_name="Pablo",
             last_name="Barrera",
+            is_staff=True
         )
         self.normal_user.set_password('test12345')
         self.normal_user.save()
         self.normal_token, created = Token.objects.get_or_create(user=self.normal_user)
+
+    def test_created_user_exists(self):
+        """
+        Test if user created on setup exists.
+        """
+
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.normal_token.key)
+
+        response = self.client.get(reverse('api:user-list'))
+        results = response.json()
+
+        dummy_user_email = results[0]['email']
+
+        self.assertEqual(dummy_user_email, 'pablo.barreragzz@uanl.edu.mx')
 
     def generate_photo_file(self):
         file = io.BytesIO()

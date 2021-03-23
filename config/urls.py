@@ -20,5 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Custom
-    path('api/v1/user-session/', include('api.urls')),
+    path('api/v1/', include('api.urls')),
 ]
