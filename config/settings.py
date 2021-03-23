@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     # Local
-    'user_session',
+    'api',
 
     # 3rd party
     'dj_rest_auth',
@@ -119,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'user_session.User'
+AUTH_USER_MODEL = 'api.User'
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",

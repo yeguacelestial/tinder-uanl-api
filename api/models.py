@@ -43,7 +43,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    profile_pictures = models.FileField(blank=False)
+    picture1 = models.FileField(blank=False)
+    picture2 = models.FileField(blank=True)
+    picture3 = models.FileField(blank=True)
+    picture4 = models.FileField(blank=True)
+    picture5 = models.FileField(blank=True)
+    picture6 = models.FileField(blank=True)
+
     about_me = models.CharField(max_length=150, default='#BuscandoMiTigreOTigresa')
     sex = models.CharField(max_length=1, choices=SEX_CHOICES, db_index=True)
     age = models.IntegerField(validators=[MinValueValidator(18), MaxValueValidator(90)], null=True)
@@ -63,7 +69,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def homo(self):
         return self.preferred_sex == self.sex
-    
+
     @property
     def get_opposed_sex(self):
         return get_opposed_sex(self.sex)

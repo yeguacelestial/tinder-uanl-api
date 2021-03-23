@@ -1,10 +1,10 @@
 # from django.contrib.auth.models import User, Group
 from django.contrib.auth.models import Group
-from user_session.models import User
+from api.models import User
 
 from rest_framework import viewsets
 from rest_framework import permissions
-from user_session.serializers import UserSerializer, GroupSerializer
+from api.serializers import UserSerializer, GroupSerializer
 
 # dj rest auth
 from allauth.socialaccount.providers.microsoft.views import MicrosoftGraphOAuth2Adapter
