@@ -16,8 +16,8 @@ This API is consumed by an external React Native app.
 
 ## Features
 
-- [ ] Sign in with school e-mail
-- [ ] User model: create custom fields.
+- [x] Sign in with school e-mail
+- [x] User model: create custom fields.
   
   Each user object should have the following key-value pairs:
   ```javascript
