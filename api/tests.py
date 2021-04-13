@@ -1,10 +1,11 @@
 import io
 import os
 
-from django.urls import reverse
 from django.test import TestCase
+from django.urls import reverse
 
 from PIL import Image
+
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.renderers import JSONRenderer
@@ -13,7 +14,7 @@ from rest_framework.test import APITestCase
 from api.models import User
 
 
-class UserSessionTest(APITestCase):
+class UserHandlingTest(APITestCase):
 
     def setUp(self):
         """

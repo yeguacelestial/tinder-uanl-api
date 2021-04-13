@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
     # Local
     'api',
+    'chat',
 
     # 3rd party
     'dj_rest_auth',
@@ -58,6 +59,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.microsoft',
     'django_extensions',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -174,6 +176,19 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     )
 }
+
+# Channels
+ASGI_APPLICATION = 'config.asgi.application'
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": [("localhost", 6379)],
+#         },
+
+#         "ROUTING": "routing.application",
+#     },
+# }
 
 # Development settings
 if os.environ.get("DJANGO_DEVELOPMENT"):

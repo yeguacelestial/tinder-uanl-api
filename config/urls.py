@@ -21,4 +21,5 @@ urlpatterns = [
 
     # Custom
     path('api/v1/', include('api.urls')),
+    path('chat/', include('chat.urls')),
 ]
