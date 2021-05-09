@@ -36,6 +36,22 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    # Local
+    'api',
+    'chat',
+
+    # 3rd party
+    'channels',
+    'dj_rest_auth',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.microsoft',
+    'django_extensions',
+
+    # Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,21 +61,6 @@ INSTALLED_APPS = [
 
     # Added Django apps
     'django.contrib.sites',
-
-    # Local
-    'api',
-    'chat',
-
-    # 3rd party
-    'dj_rest_auth',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.microsoft',
-    'django_extensions',
-    'channels',
 ]
 
 MIDDLEWARE = [
