@@ -180,16 +180,14 @@ REST_FRAMEWORK = {
 
 # Channels
 ASGI_APPLICATION = 'config.asgi.application'
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels_redis.core.RedisChannelLayer",
-#         "CONFIG": {
-#             "hosts": [("localhost", 6379)],
-#         },
-
-#         "ROUTING": "routing.application",
-#     },
-# }
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
 
 # Development settings
 if os.environ.get("DJANGO_DEVELOPMENT"):
